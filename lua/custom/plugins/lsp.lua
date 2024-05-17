@@ -66,7 +66,9 @@ function M.config()
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = vim.api.nvim_create_augroup("custom_lsp", { clear = false }),
     pattern = "*",
-    callback = vim.lsp.buf.format,
+    callback = function(_)
+      require "conform".format { lsp_fallback = true }
+    end,
   })
 end
 

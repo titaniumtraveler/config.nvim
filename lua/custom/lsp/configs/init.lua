@@ -20,7 +20,9 @@ M.defaults = {
 
     set("n", "<Leader>r", vim.lsp.buf.rename, opts)
     set("n", "<Leader>a", vim.lsp.buf.code_action, opts)
-    set("n", "<Leader>f", vim.lsp.buf.format, opts)
+    set("n", "<Leader>f", function()
+      require "conform".format { lsp_fallback = true }
+    end, opts)
 
     set("n", "<Leader>ls", vim.lsp.buf.document_symbol, opts)
     set("n", "<Leader>lS", vim.lsp.buf.workspace_symbol, opts)
