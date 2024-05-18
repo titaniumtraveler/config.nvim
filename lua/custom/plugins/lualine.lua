@@ -43,9 +43,7 @@ function M.config()
     options = {
       globalstatus = true,
       icons_enabled = true,
-      -- This will be fixed in https://github.com/nvim-lualine/lualine.nvim/pull/1081
-      -- and can then be replaced by just `"auto"`
-      theme = require "custom.plugins.lualine.base16-theme",
+      theme = "auto",
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
       disabled_filetypes = { "alpha", "dashboard" },
