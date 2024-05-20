@@ -22,3 +22,8 @@ vim.keymap.set("n", "<Leader>,", function()
 end)
 
 vim.keymap.set("n", "<Leader>e", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev)
+
+vim.keymap.set("n", "<leader>ds", vim.diagnostic.show)
+vim.keymap.set("n", "<leader>dh", vim.diagnostic.hide)
