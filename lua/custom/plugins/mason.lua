@@ -6,16 +6,7 @@ return {
   ---@type MasonSettings
   opts = {
     ui = {
-      border = {
-        { "╭", "FloatBorder" },
-        { "─", "FloatBorder" },
-        { "╮", "FloatBorder" },
-        { "│", "FloatBorder" },
-        { "╯", "FloatBorder" },
-        { "─", "FloatBorder" },
-        { "╰", "FloatBorder" },
-        { "│", "FloatBorder" },
-      },
+      border = "rounded",
     },
   },
 }
