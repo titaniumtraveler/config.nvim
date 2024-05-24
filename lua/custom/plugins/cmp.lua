@@ -13,18 +13,12 @@ local M = {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-emoji",
     "Saecki/crates.nvim",
-    {
-      "L3MON4D3/LuaSnip",
-      dependencies = {
-        "rafamadriz/friendly-snippets",
-      },
-    },
+    "L3MON4D3/LuaSnip",
   },
 }
 
 function M.config()
   local cmp = require "cmp"
-  local luasnip = require "luasnip"
 
   local kind_icons = {
     Text = "󰉿",
@@ -59,19 +53,19 @@ function M.config()
   cmp.setup {
     snippet = {
       expand = function(args)
-        luasnip.lsp_expand(args.body)
+        vim.snippet.expand(args.body)
       end,
     },
-    mapping = cmp.mapping.preset.insert {
-      ["<C-Space>"] = cmp.mapping.complete {
-        config = {
-          sources = {
-            { name = "luasnip" },
-          },
+    mapping = {
+      ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+      ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+      ["<C-k>"] = cmp.mapping(
+        cmp.mapping.confirm {
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = true,
         },
-      },
-      ["<C-e>"] = cmp.mapping.abort(),
-      ["<Tab>"] = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        { "i", "c" }
+      ),
     },
     ---@diagnostic disable-next-line:missing-fields
     formatting = {
