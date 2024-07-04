@@ -72,4 +72,11 @@ function M.config()
   })
 end
 
+M.keys = {
+  { "<Leader>ll", vim.cmd.Mason },
+  { "<Leader>li", vim.cmd.LspInfo },
+  { "<Leader>lr", vim.cmd.LspRestart },
+  { "<Leader>lt", vim.cmd.LspStop },
+}
+
 return M
