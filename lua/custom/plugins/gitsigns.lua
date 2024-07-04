@@ -5,7 +5,6 @@ local M = {
 }
 
 M.opts = {
-  _signs_staged_enable = true,
   preview_config = {
     border = "rounded",
   },
