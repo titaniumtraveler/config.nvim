@@ -1,9 +1,7 @@
 ---@type LazyPluginSpec
 local M = {
   "glacambre/firenvim",
-  cond = function()
-    return vim.g.started_by_firenvim
-  end,
+  cond = vim.g.started_by_firenvim,
   lazy = false,
 }
 

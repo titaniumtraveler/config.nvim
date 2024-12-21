@@ -4,6 +4,8 @@ local M = {
   event = "BufReadPost",
 }
 
+---@type Gitsigns.Config
+---@diagnostic disable-next-line: missing-fields
 M.opts = {
   preview_config = {
     border = "rounded",

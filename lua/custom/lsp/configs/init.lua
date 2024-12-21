@@ -24,8 +24,12 @@ M.defaults = {
       require "conform".format { lsp_fallback = true }
     end, opts)
 
-    set("n", "<Leader>ls", vim.lsp.buf.document_symbol, opts)
-    set("n", "<Leader>lS", vim.lsp.buf.workspace_symbol, opts)
+    set("n", "<Leader>ls", function()
+      require "telescope.builtin".lsp_document_symbols()
+    end, opts)
+    set("n", "<Leader>lS", function()
+      require "telescope.builtin".lsp_workspace_symbols()
+    end, opts)
   end,
 }
 
