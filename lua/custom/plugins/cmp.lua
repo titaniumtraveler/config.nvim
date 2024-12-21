@@ -80,6 +80,15 @@ function M.config()
           path = "",
           emoji = "",
         })[entry.source.name]
+
+        if
+          entry.source.name == "nvim_lsp"
+          and entry.completion_item.labelDetails
+          and entry.completion_item.labelDetails.detail
+        then
+          vim_item.menu = vim_item.menu .. entry.completion_item.labelDetails.detail
+        end
+
         return vim_item
       end,
     },
