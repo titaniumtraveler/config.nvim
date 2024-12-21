@@ -8,6 +8,9 @@ return {
         },
         diagnostics = {
           globals = { "vim" },
+          neededFileStatus = {
+            ["no-unknown"] = "Any",
+          },
         },
         workspace = {
           library = {

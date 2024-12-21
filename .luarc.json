@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "format": {
+    "enable": false
+  },
+  "diagnostics": {
+    "globals": [
+      "vim"
+    ],
+    "neededFileStatus": {
+      "no-unknown": "Any"
+    }
+  }
+}
