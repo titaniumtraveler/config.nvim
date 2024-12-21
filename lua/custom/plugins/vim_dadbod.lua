@@ -22,6 +22,10 @@ local M = {
     vim.g.db_ui_force_echo_notifications = 1
     vim.g.db_ui_bind_param_pattern = "\\$\\d\\+"
 
+    if vim.env["VIM_DADBOD_RC"] then
+      vim.cmd.source("vim-dadbod/rc.lua")
+    end
+
     require "cmp".setup.filetype({ "sql", "mysql", "plsql" }, {
       sources = {
         { name = "vim-dadbod-completion" },
