@@ -1,0 +1,22 @@
+[workspace]
+members = ["crates/vanadium-oxide-codegen", "crates/vanadium-oxide-lua"]
+
+[workspace.dependencies]
+mlua-sys = { version = "0.6.7", features = [
+  "luajit",
+], default-features = false }
+mlua = { version = "0.9.9", features = ["luajit"], default-features = false }
+# nvim-oxi = { version = "0.5.1", features = ["mlua", "neovim-nightly"] }
+
+[package]
+name = "vanadium-oxide"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+bitflags = "2.9.0"
+# mlua.workspace = true
+# nvim-oxi.workspace = true
