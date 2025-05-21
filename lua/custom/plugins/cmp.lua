@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@type LazyPluginSpec
 local M = {
   "hrsh7th/nvim-cmp",
@@ -50,23 +51,25 @@ function M.config()
     Copilot = "",
   }
 
+  local cmp_mapping_ci = function(map)
+    return cmp.mapping(map, { "c", "i" })
+  end
+  local mapping = {
+    ["<C-n>"] = cmp_mapping_ci(cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select }),
+    ["<C-p>"] = cmp_mapping_ci(cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select }),
+    ["<C-k>"] = cmp_mapping_ci(cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    }),
+  }
+
   cmp.setup {
     snippet = {
       expand = function(args)
         vim.snippet.expand(args.body)
       end,
     },
-    mapping = {
-      ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-      ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-      ["<C-k>"] = cmp.mapping(
-        cmp.mapping.confirm {
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
-        },
-        { "i", "c" }
-      ),
-    },
+    mapping = mapping,
     ---@diagnostic disable-next-line:missing-fields
     formatting = {
       fields = { "kind", "abbr", "menu" },
@@ -113,6 +116,27 @@ function M.config()
       ghost_text = true,
     },
   }
+
+  cmp.setup.cmdline("/", {
+    mapping = mapping,
+    sources = {
+      { name = "buffer" },
+    },
+  })
+
+  cmp.setup.cmdline(":", {
+    mapping = mapping,
+    sources = cmp.config.sources({
+      { name = "path" },
+    }, {
+      {
+        name = "cmdline",
+        option = {
+          ignore_cmds = { "Man", "!" },
+        },
+      },
+    }),
+  })
 end
 
 return M

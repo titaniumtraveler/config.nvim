@@ -1,7 +1,7 @@
 ---@type LazyPluginSpec
 local M = {
-  "dev/autoscheme.nvim",
-  dev = true,
+  "titaniumtraveler/autoscheme.nvim",
+  dev = false,
   lazy = false,
   priority = 1000,
 }

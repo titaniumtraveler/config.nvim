@@ -316,6 +316,7 @@ StartifySpecial = "base03"
 javaOperator = "base0D"
 
 ["Treesitter highlighting"]
+"@normal"   = "link:Normal"
 "@variable" = "link:Identifier"
 
 ["Neogit highlighting"]

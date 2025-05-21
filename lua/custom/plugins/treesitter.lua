@@ -3,7 +3,7 @@ local M = {
   "nvim-treesitter/nvim-treesitter",
   event = "BufReadPost",
   dependencies = {
-    "nvim-treesitter/playground",
+    -- "nvim-treesitter/playground",
     "nvim-tree/nvim-web-devicons",
   },
 }
@@ -19,10 +19,8 @@ function M.config()
 
     highlight = { enable = true },
     matchup = { enable = true },
-    ident = { enable = true },
+    indent = { enable = true },
     incremental_selection = { enable = true },
-
-    playground = { enable = true },
 
     query_linter = {
       enable = true,

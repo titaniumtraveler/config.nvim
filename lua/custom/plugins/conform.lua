@@ -1,3 +1,5 @@
+---@module "conform"
+
 ---@type LazyPluginSpec
 return {
   "stevearc/conform.nvim",
@@ -7,6 +9,7 @@ return {
       lua = { "stylua" },
       tex = { "latexindent" },
       sql = { "sql_formatter" },
+      -- kdl = { "kdlfmt" },
     },
   },
 }

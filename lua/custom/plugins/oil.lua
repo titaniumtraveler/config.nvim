@@ -7,6 +7,7 @@ local M = {
 M.opts = {
   default_file_explorer = true,
   view_options = {
+    --[[
     is_hidden_file = function(name, bufnr)
       if name == ".." then
         return false
@@ -26,10 +27,17 @@ M.opts = {
         error("failed executing command `" .. vim.inspect(cmd) .. '` with "' .. cmd_output .. '"')
       end
     end,
+    ]]
+    --
   },
   keymaps = {
     ["<C-l>"] = false,
-    ["<C-t>"] = false,
+    ["<C-t>"] = {
+      "actions.cd",
+      opts = {
+        scope = "win",
+      },
+    },
   },
 }
 

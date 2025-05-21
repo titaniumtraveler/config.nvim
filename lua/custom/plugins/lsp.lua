@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@type LazyPluginSpec
 local M = {
   "neovim/nvim-lspconfig",
@@ -6,22 +7,17 @@ local M = {
     "hrsh7th/cmp-nvim-lsp",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    "folke/neoconf.nvim",
   },
 }
 
 function M.config()
-  require "mason-lspconfig".setup_handlers {
-    function(server)
-      local default = require "custom.lsp.configs"
-
-      local require_ok, config = pcall(require, "custom.lsp.configs." .. server)
-      if require_ok and config ~= false then
-        default = vim.tbl_deep_extend("force", default, config)
-      end
-
-      default.setup(server, default.opts)
-    end,
+  require "mason-lspconfig".setup {
+    enable = true,
   }
+  vim.lsp.config("*", require "custom.lsp.config")
+  -- vim.lsp.enable( "kdl_lsp")
+  vim.lsp.enable("kdl_lsp_crate")
 
   local signs = {
     { name = "DiagnosticSignError", text = "" },
@@ -48,26 +44,20 @@ function M.config()
       focusable = true,
       style = "minimal",
       border = "rounded",
-      source = "always",
+      source = true,
       header = "",
       prefix = "",
       suffix = "",
     },
   }
 
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-  })
-
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-  })
-
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = vim.api.nvim_create_augroup("custom_lsp", { clear = false }),
     pattern = "*",
     callback = function(_)
-      require "conform".format { lsp_fallback = true }
+      if vim.b.custom_formatting then
+        require "conform".format { lsp_fallback = true }
+      end
     end,
   })
 end

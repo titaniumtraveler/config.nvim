@@ -109,6 +109,24 @@ M.keys = {
       require "telescope.builtin".builtin()
     end,
   },
+  {
+    "<Leader>fl",
+    function()
+      require "telescope.builtin".lsp_document_symbols()
+    end,
+  },
+  {
+    "<Leader>fL",
+    function()
+      require "telescope.builtin".lsp_workspace_symbols()
+    end,
+  },
+  {
+    "<Leader>fr",
+    function()
+      require "telescope.builtin".lsp_references()
+    end,
+  },
 }
 
 return M

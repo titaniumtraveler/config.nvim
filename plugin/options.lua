@@ -48,11 +48,15 @@ vim.opt.numberwidth = 4 -- minimal number of columns to use for the line number 
 vim.opt.scrolloff = 0
 vim.opt.sidescrolloff = 0
 vim.opt.wrap = false
+vim.opt.showbreak = "    "
 vim.opt.fillchars.eob = " " -- show empty lines at the end of a buffer as ` ` {default `~`}
 
 vim.opt.cursorline = true -- highlight the current line
 vim.opt.laststatus = 3 -- only the last window will always have a status line
-vim.opt.showcmd = false -- hide (partial) command in the last line of the screen (for performance)
+vim.opt.showcmd = true
+
+vim.opt.foldmethod = "manual"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 vim.opt.ruler = false -- hide the line and column number of the cursor position
 vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
