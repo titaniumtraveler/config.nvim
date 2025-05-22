@@ -6,7 +6,10 @@ vim.keymap.set({ "n", "i", "c" }, "<C-l>", "<CR>", { remap = true })
 vim.keymap.set("n", "<leader>w", vim.cmd.write)
 
 vim.keymap.set("n", "<leader>t", function()
-  vim.api.nvim_cmd({ cmd = "split", mods = { tab = -1 } }, {})
+  vim.api.nvim_cmd({
+    cmd = "split",
+    mods = { tab = vim.api.nvim_get_current_tabpage() + 1 },
+  }, {})
 end)
 
 vim.keymap.set({ "n", "v" }, "<C-h>", vim.cmd.nohlsearch)
